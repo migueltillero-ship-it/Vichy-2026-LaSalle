@@ -261,6 +261,27 @@
         .campus-frame { position:relative; border-radius:24px; overflow:hidden; box-shadow:0 25px 60px rgba(0,0,0,.6); border:1px solid rgba(255,255,255,.08); transition:transform .5s ease; }
         .campus-frame:hover { transform:scale(1.02); }
         .campus-frame img { width:100%; height:auto; object-fit:cover; display:block; }
+
+        /* Loader para videos de familias */
+        .video-loader {
+            position: absolute; inset: 0; z-index: 3;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 10px; background: rgba(7,7,10,.85);
+            transition: opacity .4s ease;
+        }
+        .video-loader.hide { opacity: 0; pointer-events: none; }
+        .vl-spin {
+            width: 32px; height: 32px;
+            border: 2px solid rgba(201,168,76,.2);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin .8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .video-loader span {
+            font-size: 9px; text-transform: uppercase; letter-spacing: .15em;
+            color: rgba(255,255,255,.35); font-family: 'Outfit', sans-serif;
+        }
     </style>
 </head>
 <body>
@@ -295,7 +316,8 @@
 
             <img src="Gemini_Generated_Image_49fmig49fmig49fm.png"
                  alt="Centro de Estudios La Salle de San Cristóbal"
-                 class="h-20 md:h-[6.5rem] logo-fix"
+                 class="h-20 md:h-[6.5rem]"
+                 style="object-fit:contain; mix-blend-mode:normal; transition:transform .5s ease;"
                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div style="display:none;width:72px;height:72px;background:linear-gradient(135deg,#2D1B8B,#4A2FCC);border-radius:50%;align-items:center;justify-content:center;color:#fff;font-family:Georgia,serif;font-size:1rem;font-weight:bold;text-align:center;line-height:1.2;">La<br>Salle</div>
 
@@ -559,43 +581,67 @@
                 <div class="gold-line mt-8 mx-auto"></div>
                 <p class="text-white/50 text-base max-w-3xl mx-auto mt-8 leading-relaxed font-light">Familias de acogida certificadas rigurosamente por CAVILAM. Un entorno cálido, seguro y auténticamente francés.</p>
             </div>
-            <div class="grid lg:grid-cols-3 gap-16">
-                <article class="sr p-10 bg-white/5 border border-white/10 rounded-[32px] hover:border-gold/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,168,76,0.1)] group">
-                    <blockquote class="text-center flex flex-col items-center">
-                        <svg class="w-16 h-16 text-gold/20 mb-10" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.896 3.456-8.352 9.12-8.352 15.36 0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
-                        <p class="lux text-2xl md:text-3xl text-white/90 font-light italic leading-snug mb-10 group-hover:text-gold transition-colors">"Es un honor recibir a estudiantes de La Salle y compartir la 'douceur de vivre' de Vichy."</p>
-                        <footer class="mt-auto pt-8 border-t border-white/10 w-full">
-                            <cite class="text-[12px] uppercase tracking-[.25em] font-bold text-white/40 not-italic flex items-center justify-center gap-4">
-                                <span class="w-8 h-8 rounded-full bg-gold/20 border border-gold/50 flex items-center justify-center text-gold text-sm">S</span>
-                                Sylvie Bertrand · Familia Certificada
-                            </cite>
-                        </footer>
-                    </blockquote>
+            <!-- Videos de familias de acogida -->
+            <div class="grid lg:grid-cols-3 gap-10">
+
+                <!-- Familia 1: Sylvie -->
+                <article class="sr bg-white/5 border border-white/10 rounded-[32px] overflow-hidden hover:border-gold/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,168,76,.12)]">
+                    <div class="vbox" style="border-radius:0;">
+                        <video controls playsinline preload="metadata"
+                               onloadedmetadata="this.previousElementSibling&&this.previousElementSibling.remove()"
+                               onerror="showFamilyVideoError(this,'video_famille_1.mp4')">
+                            <source src="video_famille_1.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-loader" id="vl-f1">
+                            <div class="vl-spin"></div>
+                            <span>Cargando…</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-gold text-[10px] uppercase tracking-widest font-bold">Familia Certificada</span>
+                        <h3 class="lux text-2xl mt-1 text-white">Sylvie Bertrand</h3>
+                        <p class="text-white/50 text-sm mt-2 font-light italic">"Es un honor compartir la 'douceur de vivre' de Vichy con los estudiantes de La Salle."</p>
+                    </div>
                 </article>
-                <article class="sr p-10 bg-white/5 border border-white/10 rounded-[32px] hover:border-gold/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,168,76,0.1)] group">
-                    <blockquote class="text-center flex flex-col items-center">
-                        <svg class="w-16 h-16 text-gold/20 mb-10" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.896 3.456-8.352 9.12-8.352 15.36 0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
-                        <p class="lux text-2xl md:text-3xl text-white/90 font-light italic leading-snug mb-10 group-hover:text-gold transition-colors">"Queremos que se sientan en su propio hogar desde el primer día. Nuestro compromiso con su bienestar es total."</p>
-                        <footer class="mt-auto pt-8 border-t border-white/10 w-full">
-                            <cite class="text-[12px] uppercase tracking-[.25em] font-bold text-white/40 not-italic flex items-center justify-center gap-4">
-                                <span class="w-8 h-8 rounded-full bg-gold/20 border border-gold/50 flex items-center justify-center text-gold text-sm">N&P</span>
-                                Nadine et Philippe · Entorno Seguro
-                            </cite>
-                        </footer>
-                    </blockquote>
+
+                <!-- Familia 2: Nadine et Philippe -->
+                <article class="sr bg-white/5 border border-white/10 rounded-[32px] overflow-hidden hover:border-gold/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,168,76,.12)]">
+                    <div class="vbox" style="border-radius:0;">
+                        <video controls playsinline preload="metadata"
+                               onerror="showFamilyVideoError(this,'video_famille_2.mp4')">
+                            <source src="video_famille_2.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-loader" id="vl-f2">
+                            <div class="vl-spin"></div>
+                            <span>Cargando…</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-gold text-[10px] uppercase tracking-widest font-bold">Bienestar Integral</span>
+                        <h3 class="lux text-2xl mt-1 text-white">Nadine et Philippe</h3>
+                        <p class="text-white/50 text-sm mt-2 font-light italic">"Queremos que se sientan en su propio hogar desde el primer día."</p>
+                    </div>
                 </article>
-                <article class="sr p-10 bg-white/5 border border-white/10 rounded-[32px] hover:border-gold/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,168,76,0.1)] group">
-                    <blockquote class="text-center flex flex-col items-center">
-                        <svg class="w-16 h-16 text-gold/20 mb-10" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.896 3.456-8.352 9.12-8.352 15.36 0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
-                        <p class="lux text-2xl md:text-3xl text-white/90 font-light italic leading-snug mb-10 group-hover:text-gold transition-colors">"Es maravilloso ver cómo su francés florece día con día gracias a la inmersión constante."</p>
-                        <footer class="mt-auto pt-8 border-t border-white/10 w-full">
-                            <cite class="text-[12px] uppercase tracking-[.25em] font-bold text-white/40 not-italic flex items-center justify-center gap-4">
-                                <span class="w-8 h-8 rounded-full bg-gold/20 border border-gold/50 flex items-center justify-center text-gold text-sm">G</span>
-                                Gwendoline Laurent · Hospitalidad Total
-                            </cite>
-                        </footer>
-                    </blockquote>
+
+                <!-- Familia 3: Gwendoline -->
+                <article class="sr bg-white/5 border border-white/10 rounded-[32px] overflow-hidden hover:border-gold/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(201,168,76,.12)]">
+                    <div class="vbox" style="border-radius:0;">
+                        <video controls playsinline preload="metadata"
+                               onerror="showFamilyVideoError(this,'video_famille_3.mp4')">
+                            <source src="video_famille_3.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-loader" id="vl-f3">
+                            <div class="vl-spin"></div>
+                            <span>Cargando…</span>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-gold text-[10px] uppercase tracking-widest font-bold">Hospitalidad Francesa</span>
+                        <h3 class="lux text-2xl mt-1 text-white">Gwendoline Laurent</h3>
+                        <p class="text-white/50 text-sm mt-2 font-light italic">"Es maravilloso ver cómo su francés florece día con día."</p>
+                    </div>
                 </article>
+
             </div>
             <div class="sr max-w-5xl mx-auto grid md:grid-cols-3 gap-6 mt-24">
                 <div class="glass rounded-[28px] p-10 text-center hover:bg-white/5 transition-colors">
@@ -863,7 +909,7 @@
                 <div class="logo-wrap-footer">
                     <img src="Gemini_Generated_Image_iyuzoiiyuzoiiyuz.png" class="h-10 logo-fix-footer" loading="lazy" onerror="this.style.display='none'" alt="Alliance Française San Cristóbal">
                     <div class="w-px h-10 bg-slate-300"></div>
-                    <img src="Gemini_Generated_Image_49fmig49fmig49fm.png" class="h-12 logo-fix-footer" loading="lazy" onerror="this.style.display='none'" alt="Colegio La Salle">
+                    <img src="Gemini_Generated_Image_49fmig49fmig49fm.png" class="h-12" style="object-fit:contain;mix-blend-mode:normal;" loading="lazy" onerror="this.style.display='none'" alt="Colegio La Salle">
                     <div class="w-px h-10 bg-slate-300"></div>
                     <img src="logocavilam2024.png" class="h-8 logo-fix-footer" loading="lazy" onerror="this.style.display='none'" alt="CAVILAM Alliance Française">
                 </div>
@@ -968,7 +1014,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (startBtn) {
         startBtn.addEventListener('click', () => {
             if (music) {
-                music.volume = 0.25;
+                music.volume = 0.5;
                 const playPromise = music.play();
                 if (playPromise !== undefined) {
                     playPromise
@@ -1114,6 +1160,40 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.hero-a,.sr,.sr-l,.sr-r').forEach(el => { el.style.opacity=1; el.style.transform='none'; });
         triggerSuccessMessage();
     }
+
+    /* ── VIDEOS FAMILIAS: timeout + error handlers ── */
+    function showFamilyVideoError(videoEl, filename) {
+        const container = videoEl.closest('.vbox');
+        if (!container) return;
+        const loader = container.querySelector('.video-loader');
+        if (loader) {
+            loader.innerHTML = \`<svg style="width:32px;height:32px;color:rgba(201,168,76,.4)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.362a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg><span style="text-align:center;padding:0 1rem;">Archivo no encontrado<br><em style="color:rgba(201,168,76,.5);font-size:8px;">\${filename}</em></span>\`;
+        }
+    }
+
+    // Registrar timeouts para los 3 videos de familias
+    [
+        { vid: 'video_famille_1.mp4', loader: 'vl-f1' },
+        { vid: 'video_famille_2.mp4', loader: 'vl-f2' },
+        { vid: 'video_famille_3.mp4', loader: 'vl-f3' },
+    ].forEach(({ vid, loader }) => {
+        const loaderEl = document.getElementById(loader);
+        if (!loaderEl) return;
+        const videoEl = loaderEl.closest('.vbox').querySelector('video');
+        if (!videoEl) return;
+
+        videoEl.addEventListener('loadedmetadata', () => {
+            loaderEl.classList.add('hide');
+            setTimeout(() => loaderEl.remove(), 400);
+        });
+        videoEl.addEventListener('error', () => showFamilyVideoError(videoEl, vid));
+
+        // Timeout 5s: si no cargó, mostrar error
+        setTimeout(() => {
+            if (videoEl.readyState === 0) showFamilyVideoError(videoEl, vid);
+        }, 5000);
+    });
+
 });
 </script>
 </body>
