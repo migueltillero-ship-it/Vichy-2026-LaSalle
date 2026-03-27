@@ -8,14 +8,27 @@
     <meta name="author" content="Alliance Française de San Cristóbal de Las Casas">
     
     <title>Vichy 2026 · Un Voyage d'Exception | La Salle & Alliance Française</title>
-    <meta name="description" content="Programa exclusivo de inmersión lingüística y cultural en Francia. 18 días entre Vichy y París. Dirigido a estudiantes del Colegio La Salle, con certificación CAVILAM.">
-    <meta name="keywords" content="Inmersión lingüística, Francia, Vichy, París, Colegio La Salle, Alliance Française, CAVILAM, aprender francés, viaje de estudios">
+    <meta name="description" content="Programa exclusivo de inmersión lingüística y cultural en Francia. 18 días entre Vichy y París. Dirigido a estudiantes de Secundaria y Preparatoria del Colegio La Salle, con certificación CAVILAM.">
+    <meta name="keywords" content="Inmersión lingüística, Francia, Vichy, París, Colegio La Salle, Alliance Française, CAVILAM, aprender francés, viaje de estudios, Chiapas">
     
     <meta property="og:title" content="Vichy 2026 · Un Voyage d'Exception">
     <meta property="og:description" content="18 días, 5 ciudades, una vida transformada. El programa de inmersión más exclusivo para estudiantes La Salle. Asegura tu plaza.">
     <meta property="og:image" content="logos_banner.png">
     <meta property="og:url" content="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/">
     <meta property="og:type" content="website">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalEvent",
+      "name": "Inmersión Lingüística Vichy 2026",
+      "description": "Programa de 18 días de inmersión total en Francia para estudiantes de La Salle.",
+      "organizer": {
+        "@type": "EducationalOrganization",
+        "name": "Alliance Française de San Cristóbal de Las Casas"
+      }
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,7 +87,6 @@
         #intro { position: fixed; inset: 0; background: var(--ink); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; overflow: hidden; }
         #intro-inner { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 2rem; max-width: 60rem; width: 100%; opacity: 0; transform: translateY(30px); }
         
-        /* Contenedor Banner Unificado de Logos */
         #intro .logo-wrap { background: transparent; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6); border-radius: 12px; overflow: hidden; }
         #intro .logo-fix { object-fit: contain; max-width: 100%; width: 450px; transition: transform 0.5s ease; border-radius: 12px; }
         #intro .logo-fix:hover { transform: scale(1.02); }
@@ -163,7 +175,7 @@
 
 <button id="audio-btn" aria-label="Control de música de fondo" title="Reproducir/Pausar Música">
     <svg id="ico-play" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
-    <svg id="ico-pause" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+    <svg id="ico-pause" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
 </button>
 
 <div id="intro" role="dialog" aria-label="Bienvenida al Portal Vichy 2026">
@@ -264,7 +276,7 @@
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-16 items-center">
             <div class="sr-l md:col-span-7">
                 <div class="convenio-img-frame shadow-2xl">
-                    <img src="convenio_lasalle_af.png" alt="Firma oficial del convenio institucional" loading="lazy">
+                    <img src="convenio_lasalle_af.png" alt="Firma oficial del convenio" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 </div>
             </div>
@@ -380,7 +392,7 @@
 
     <section id="bienestar" class="sp bg-ink border-t border-white/5 relative overflow-hidden">
         <div class="absolute inset-0 z-0 opacity-10 pointer-events-none">
-            <img src="fondo_af_bienestar.png" alt="Fondo texturizado de la Alianza Francesa" class="w-full h-full object-cover">
+            <img src="fondo_af_bienestar.png" alt="Fondo texturizado" class="w-full h-full object-cover">
         </div>
         
         <div class="max-w-7xl mx-auto px-6 relative z-10">
@@ -578,13 +590,19 @@
             </div>
             <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
                 <article class="sr qr-card group hover:-translate-y-3 transition-transform duration-500">
-                    <div class="qr-box"><img src="imagen.png" alt="QR Contacto Miguel Tillero A."></div>
+                    <div class="qr-box">
+                        <img src="imagen.png" alt="QR Contacto Miguel Tillero A." 
+                             onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5219671721870&color=000000';">
+                    </div>
                     <h4 class="lux text-3xl font-semibold text-blue group-hover:text-gold transition-colors">Miguel Tillero A.</h4>
                     <p class="text-[10px] uppercase tracking-[.25em] text-slate-400 mt-2 font-bold bg-slate-100 px-4 py-1 rounded-full">Director General · AFSC</p>
                     <a href="tel:+5219671721870" class="mt-6 text-xl font-bold text-ink hover:text-blue transition-colors block">+52 1 967 172 1870</a>
                 </article>
                 <article class="sr qr-card group hover:-translate-y-3 transition-transform duration-500">
-                    <div class="qr-box"><img src="qr_roman.png" alt="QR Contacto Román Fuentes"></div>
+                    <div class="qr-box">
+                        <img src="Rom%C3%A1n_Fuentes-1024.jpeg" alt="QR Contacto Román Fuentes" 
+                             onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/5214731219337&color=000000';">
+                    </div>
                     <h4 class="lux text-3xl font-semibold text-blue group-hover:text-gold transition-colors">Román Fuentes</h4>
                     <p class="text-[10px] uppercase tracking-[.25em] text-slate-400 mt-2 font-bold bg-slate-100 px-4 py-1 rounded-full">Responsable · La Salle</p>
                     <a href="tel:+5214731219337" class="mt-6 text-xl font-bold text-ink hover:text-blue transition-colors block">+52 1 473 121 9337</a>
@@ -652,7 +670,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const icoPause = document.getElementById('ico-pause');
     let isPlaying = false;
 
-    // Forzamos carga del audio
     if(music) music.load();
 
     if(audioBtn && music) {
@@ -681,26 +698,30 @@ document.addEventListener('DOMContentLoaded', () => {
         vid.addEventListener('ended', () => { if (isPlaying && music) { music.play().catch(()=>{}); icoPlay.classList.add('hidden'); icoPause.classList.remove('hidden'); } });
     });
 
+    let audioStarted = false;
+    function globalAudioTrigger() {
+        if(!audioStarted && music) {
+            music.volume = 0.3;
+            let playPromise = music.play();
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    isPlaying = true;
+                    audioStarted = true;
+                    if(audioBtn) audioBtn.classList.add('show');
+                    if(icoPlay) icoPlay.classList.add('hidden');
+                    if(icoPause) icoPause.classList.remove('hidden');
+                }).catch(e => {});
+            }
+        }
+    }
+    
+    document.body.addEventListener('click', globalAudioTrigger, { once: true });
+    document.body.addEventListener('touchstart', globalAudioTrigger, { once: true });
+    document.body.addEventListener('scroll', globalAudioTrigger, { once: true });
+
     if(startBtn) {
         startBtn.addEventListener('click', () => {
-            // EL AUDIO SE ACTIVA A TRAVÉS DE LA INTERACCIÓN HUMANA OBLIGATORIA
-            if(music) {
-                music.volume = 0.3;
-                let playPromise = music.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(_ => {
-                        isPlaying = true;
-                        if(audioBtn) audioBtn.classList.add('show');
-                        icoPlay.classList.add('hidden');
-                        icoPause.classList.remove('hidden');
-                    }).catch(error => {
-                        console.log("Navegador bloquea autoplay estricto");
-                        if(audioBtn) audioBtn.classList.add('show');
-                        icoPause.classList.add('hidden');
-                        icoPlay.classList.remove('hidden');
-                    });
-                }
-            }
+            globalAudioTrigger(); 
 
             const introOverlay = document.getElementById('intro');
             const mainContent = document.getElementById('main');
@@ -765,6 +786,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.hero-a, .sr, .sr-l, .sr-r').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
         document.getElementById('gracias').style.display = 'block';
         document.getElementById('formulario').style.display = 'none';
+        globalAudioTrigger();
     }
 
     const formRegistro = document.getElementById("formulario");
