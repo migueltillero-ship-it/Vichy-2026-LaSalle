@@ -8,28 +8,14 @@
     <meta name="author" content="Alliance Française de San Cristóbal de Las Casas">
     
     <title>Vichy 2026 · Un Voyage d'Exception | La Salle & Alliance Française</title>
-    <meta name="description" content="Programa exclusivo de inmersión lingüística y cultural en Francia. 18 días entre Vichy y París. Dirigido a estudiantes de Secundaria y Preparatoria del Colegio La Salle, con certificación CAVILAM.">
-    <meta name="keywords" content="Inmersión lingüística, Francia, Vichy, París, Colegio La Salle, Alliance Française, CAVILAM, aprender francés, viaje de estudios, Chiapas">
+    <meta name="description" content="Programa exclusivo de inmersión lingüística y cultural en Francia. 18 días entre Vichy y París. Dirigido a estudiantes del Colegio La Salle, con certificación CAVILAM.">
+    <meta name="keywords" content="Inmersión lingüística, Francia, Vichy, París, Colegio La Salle, Alliance Française, CAVILAM, aprender francés, viaje de estudios">
     
     <meta property="og:title" content="Vichy 2026 · Un Voyage d'Exception">
     <meta property="og:description" content="18 días, 5 ciudades, una vida transformada. El programa de inmersión más exclusivo para estudiantes La Salle. Asegura tu plaza.">
-    <meta property="og:image" content="Gemini_Generated_Image_iyuzoiiyuzoiiyuz.png">
+    <meta property="og:image" content="logos_banner.png">
     <meta property="og:url" content="https://migueltillero-ship-it.github.io/Vichy2026-LaSalle/">
     <meta property="og:type" content="website">
-    <meta property="og:locale" content="es_MX">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "EducationalEvent",
-      "name": "Inmersión Lingüística Vichy 2026",
-      "description": "Programa de 18 días de inmersión total en Francia para estudiantes de La Salle.",
-      "organizer": {
-        "@type": "EducationalOrganization",
-        "name": "Alliance Française de San Cristóbal de Las Casas"
-      }
-    }
-    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,43 +50,34 @@
     </script>
 
     <style>
-        /* Variables y Reseteo Base */
         :root { --gold: #C9A84C; --blue: #002395; --red: #ED2939; --ink: #07070A; --ink-mid: #0F0F14; --cream: #FAF8F3; }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         ::selection { background: var(--gold); color: #000; }
         
         body { font-family: 'Outfit', sans-serif; background: var(--ink); color: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-        /* Scrollbar de Lujo */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--ink); }
         ::-webkit-scrollbar-thumb { background: rgba(201,168,76,.3); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
-        /* Utilidades Tipográficas */
         .lux { font-family: 'Cormorant Garamond', serif; line-height: 1.05; letter-spacing: -0.01em; }
         .tricolor { height: 3px; background: linear-gradient(90deg, var(--blue) 33.33%, #fff 33.33%, #fff 66.66%, var(--red) 66.66%); border-radius: 2px; }
         .gold-line { width: 60px; height: 1.5px; background: linear-gradient(90deg, var(--gold), transparent); }
 
-        /* Efecto Grano Cinematográfico */
         body::after {
             content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9990;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
             opacity: 0.02;
         }
 
-        /* ── SECCIÓN INTRO (OVERLAY) ── */
         #intro { position: fixed; inset: 0; background: var(--ink); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; overflow: hidden; }
         #intro-inner { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 2rem; max-width: 60rem; width: 100%; opacity: 0; transform: translateY(30px); }
         
-        /* LOGOS BLANCOS CLÁSICOS */
-        #intro .logo-wrap {
-            background: #ffffff; border-radius: 24px; padding: 1.5rem 3rem;
-            display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center;
-            gap: 3rem; box-shadow: 0 20px 50px rgba(0,0,0,0.6); border: none;
-        }
-        #intro .logo-fix { object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.1); transition: transform 0.5s ease; }
-        #intro .logo-fix:hover { transform: scale(1.05); }
+        /* Contenedor Banner Unificado de Logos */
+        #intro .logo-wrap { background: transparent; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6); border-radius: 12px; overflow: hidden; }
+        #intro .logo-fix { object-fit: contain; max-width: 100%; width: 450px; transition: transform 0.5s ease; border-radius: 12px; }
+        #intro .logo-fix:hover { transform: scale(1.02); }
 
         #ptcl { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
         .ptcl { position: absolute; border-radius: 50%; background: var(--gold); opacity: 0; animation: floatUp var(--d, 10s) ease-in-out infinite var(--dl, 0s); }
@@ -108,9 +85,8 @@
         
         .h-deco { position: absolute; height: 1px; width: 100%; background: linear-gradient(90deg, transparent, rgba(201,168,76,.2), transparent); opacity: 0; transform: scaleX(.2); }
         .intro-big { font-family: 'Cormorant Garamond', serif; font-size: clamp(4.5rem, 14vw, 10rem); font-weight: 300; line-height: 0.9; letter-spacing: -0.04em; color: #fff; text-shadow: 0 10px 40px rgba(0,0,0,0.5); }
-        .intro-big em { color: var(--gold); font-style: italic; font-weight: 400; }
+        .intro-big em { color: var(--gold); font-style: italic; font-weight: 400; text-shadow: 0 0 30px rgba(201,168,76,0.3); }
 
-        /* ── NAVEGACIÓN ── */
         #nav { position: fixed; top: 0; width: 100%; z-index: 50; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         #nav.scrolled { background: rgba(7, 7, 10, 0.92); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(201,168,76,0.15); padding-top: 1rem; padding-bottom: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         @media(max-width:768px){ #nav{ padding: 1rem 1.5rem; } }
@@ -124,7 +100,6 @@
         .hero-tag { display: inline-flex; align-items: center; gap: 12px; padding: 8px 22px; border-radius: 100px; background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); backdrop-filter: blur(10px); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.25em; color: var(--gold); }
         .hero-a { opacity: 0; transform: translateY(30px); }
 
-        /* Componentes SR (ScrollReveal) */
         .sr { opacity: 0; transform: translateY(50px); }
         .sr-l { opacity: 0; transform: translateX(-50px); }
         .sr-r { opacity: 0; transform: translateX(50px); }
@@ -166,8 +141,8 @@
         .qr-card:hover .qr-box { transform: scale(1.05); border-color: var(--gold); }
         .qr-box img { width: 140px; height: 140px; object-fit: contain; }
         
-        .logo-wrap-footer { background: #fff; border-radius: 16px; padding: 1rem 2rem; display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.5rem; }
-        .logo-fix-footer { object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.1); }
+        .logo-wrap-footer { background: transparent; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; }
+        .logo-fix-footer { object-fit: contain; max-width: 100%; width: 300px; border-radius: 12px; }
 
         #audio-btn { position: fixed; bottom: 40px; left: 40px; z-index: 90; width: 60px; height: 60px; border-radius: 50%; background: rgba(7,7,10,.85); border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(16px); transition: all 0.4s ease; opacity: 0; pointer-events: none; color: var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         #audio-btn.show { opacity: 1; pointer-events: auto; }
@@ -184,7 +159,7 @@
 </head>
 <body>
 
-<audio id="bg-music" src="Arrival_at_the_Terminal%20(1).mp3" loop preload="auto"></audio>
+<audio id="bg-music" src="musica-fondo.mp3" loop preload="auto"></audio>
 
 <button id="audio-btn" aria-label="Control de música de fondo" title="Reproducir/Pausar Música">
     <svg id="ico-play" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
@@ -198,11 +173,7 @@
 
     <div id="intro-inner">
         <div class="logo-wrap" id="logos">
-            <img src="Gemini_Generated_Image_iyuzoiiyuzoiiyuz.png" alt="Alliance Française de San Cristóbal" class="h-14 md:h-20 logo-fix" onerror="this.style.display='none'">
-            <div class="w-px h-14 bg-slate-300 hidden md:block" aria-hidden="true"></div>
-            <img src="Gemini_Generated_Image_49fmig49fmig49fm.png" alt="Colegio La Salle" class="h-20 md:h-[6.5rem] logo-fix" onerror="this.src='la%20salle.jpeg'; this.onerror=function(){this.style.display='none';};">
-            <div class="w-px h-14 bg-slate-300 hidden md:block" aria-hidden="true"></div>
-            <img src="logo-cavilam.png" alt="CAVILAM Alliance Française Vichy" class="h-12 md:h-16 logo-fix" onerror="this.style.display='none'">
+            <img src="logos_banner.png" alt="Alliance Française de San Cristóbal, Colegio La Salle, CAVILAM Vichy" class="logo-fix" onerror="this.style.display='none'">
         </div>
 
         <div class="tricolor w-32 opacity-70" aria-hidden="true"></div>
@@ -258,9 +229,10 @@
 </div>
 
 <main id="main">
+
     <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-ink">
         <div class="absolute inset-0 z-0">
-            <video id="hero-vid" class="w-full h-full object-cover opacity-60 mix-blend-screen" playsinline autoplay muted loop preload="none" poster="Gemini_Generated_Image_iyuzoiiyuzoiiyuz.png">
+            <video id="hero-vid" class="w-full h-full object-cover opacity-60 mix-blend-screen" playsinline autoplay muted loop preload="none" poster="logos_banner.png">
                 <source src="Vichy_2026_La_Salle.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/20 to-ink/90"></div>
@@ -292,7 +264,7 @@
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-16 items-center">
             <div class="sr-l md:col-span-7">
                 <div class="convenio-img-frame shadow-2xl">
-                    <img src="convenio_lasalle_af.png" alt="Firma oficial del convenio" loading="lazy">
+                    <img src="convenio_lasalle_af.png" alt="Firma oficial del convenio institucional" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 </div>
             </div>
@@ -407,6 +379,9 @@
     </section>
 
     <section id="bienestar" class="sp bg-ink border-t border-white/5 relative overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-10 pointer-events-none">
+            <img src="fondo_af_bienestar.png" alt="Fondo texturizado de la Alianza Francesa" class="w-full h-full object-cover">
+        </div>
         
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="sr text-center mb-24">
@@ -419,7 +394,7 @@
             <div class="grid md:grid-cols-3 gap-8 mb-20">
                 <article class="sr bg-ink-mid rounded-[32px] overflow-hidden border border-white/10 hover:border-gold/40 transition-all duration-500 hover:-translate-y-3">
                     <div class="vbox rounded-none border-none shadow-none bg-black">
-                        <video controls playsinline preload="none" poster="Gemini_Generated_Image_iyuzoiiyuzoiiyuz.png" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" poster="logos_banner.png" class="w-full h-full object-cover">
                             <source src="video_famille_1.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -430,7 +405,7 @@
                 </article>
                 <article class="sr bg-ink-mid rounded-[32px] overflow-hidden border border-white/10 hover:border-gold/40 transition-all duration-500 hover:-translate-y-3">
                     <div class="vbox rounded-none border-none shadow-none bg-black">
-                        <video controls playsinline preload="none" poster="Gemini_Generated_Image_iyuzoiiyuzoiiyuz.png" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" poster="logos_banner.png" class="w-full h-full object-cover">
                             <source src="video_famille_2.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -441,7 +416,7 @@
                 </article>
                 <article class="sr bg-ink-mid rounded-[32px] overflow-hidden border border-white/10 hover:border-gold/40 transition-all duration-500 hover:-translate-y-3">
                     <div class="vbox rounded-none border-none shadow-none bg-black">
-                        <video controls playsinline preload="none" poster="Gemini_Generated_Image_iyuzoiiyuzoiiyuz.png" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" poster="logos_banner.png" class="w-full h-full object-cover">
                             <source src="video_famille_3.mp4" type="video/mp4">
                         </video>
                     </div>
@@ -477,7 +452,7 @@
             <div class="sr-l relative">
                 <div class="absolute -inset-4 bg-gold/20 blur-[100px] rounded-full z-0"></div>
                 <div class="vbox shadow-[0_30px_80px_rgba(0,0,0,0.8)] border border-gold/30 rounded-[32px] relative z-10 bg-black">
-                    <video controls playsinline preload="none" poster="Gemini_Generated_Image_iyuzoiiyuzoiiyuz.png" class="w-full h-full object-cover">
+                    <video controls playsinline preload="none" poster="logos_banner.png" class="w-full h-full object-cover">
                         <source src="video_regina.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -603,13 +578,13 @@
             </div>
             <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
                 <article class="sr qr-card group hover:-translate-y-3 transition-transform duration-500">
-                    <div class="qr-box"><img src="imagen.png" alt="QR Miguel Tillero A."></div>
+                    <div class="qr-box"><img src="imagen.png" alt="QR Contacto Miguel Tillero A."></div>
                     <h4 class="lux text-3xl font-semibold text-blue group-hover:text-gold transition-colors">Miguel Tillero A.</h4>
                     <p class="text-[10px] uppercase tracking-[.25em] text-slate-400 mt-2 font-bold bg-slate-100 px-4 py-1 rounded-full">Director General · AFSC</p>
                     <a href="tel:+5219671721870" class="mt-6 text-xl font-bold text-ink hover:text-blue transition-colors block">+52 1 967 172 1870</a>
                 </article>
                 <article class="sr qr-card group hover:-translate-y-3 transition-transform duration-500">
-                    <div class="qr-box"><img src="qr_roman.png" alt="QR Román Fuentes"></div>
+                    <div class="qr-box"><img src="qr_roman.png" alt="QR Contacto Román Fuentes"></div>
                     <h4 class="lux text-3xl font-semibold text-blue group-hover:text-gold transition-colors">Román Fuentes</h4>
                     <p class="text-[10px] uppercase tracking-[.25em] text-slate-400 mt-2 font-bold bg-slate-100 px-4 py-1 rounded-full">Responsable · La Salle</p>
                     <a href="tel:+5214731219337" class="mt-6 text-xl font-bold text-ink hover:text-blue transition-colors block">+52 1 473 121 9337</a>
@@ -626,11 +601,7 @@
                     <p class="text-white/40 text-[11px] uppercase tracking-widest font-bold">Un Proyecto Conjunto de Excelencia Educativa</p>
                 </div>
                 <div class="logo-wrap-footer">
-                    <img src="Gemini_Generated_Image_iyuzoiiyuzoiiyuz.png" class="h-10 logo-fix-footer" alt="AFSC">
-                    <div class="w-px h-10 bg-slate-300"></div>
-                    <img src="Gemini_Generated_Image_49fmig49fmig49fm.png" class="h-12 logo-fix-footer" alt="La Salle" onerror="this.src='la%20salle.jpeg'; this.onerror=function(){this.style.display='none';};">
-                    <div class="w-px h-10 bg-slate-300"></div>
-                    <img src="logo-cavilam.png" class="h-8 logo-fix-footer" alt="CAVILAM">
+                    <img src="logos_banner.png" class="logo-fix-footer" alt="Alianza Francesa, Colegio La Salle, CAVILAM Vichy" onerror="this.style.display='none'">
                 </div>
             </div>
             <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8"></div>
