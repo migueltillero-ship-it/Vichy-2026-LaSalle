@@ -1,0 +1,38 @@
+import os
+
+# Ruta exacta indicada para el proyecto de La Salle
+ruta_carpeta = r"C:\Users\ALIANZA FRANCESA\Desktop\Vichy2026-LaSalle"
+
+print("=====================================================")
+print(f"Auditoría de Directorio: {ruta_carpeta}")
+print("=====================================================\n")
+
+if os.path.exists(ruta_carpeta):
+    archivos_totales = 0
+    para_revision = []
+
+    for raiz, directorios, archivos in os.walk(ruta_carpeta):
+        # Calcular el nivel de profundidad para una visualización elegante
+        nivel = raiz.replace(ruta_carpeta, '').count(os.sep)
+        indentacion = ' ' * 4 * nivel
+        nombre_carpeta = os.path.basename(raiz)
+        
+        if nombre_carpeta:
+            print(f"{indentacion}📁 {nombre_carpeta}/")
+        else:
+            print(f"📁 Raíz del Proyecto/")
+            
+        sub_indentacion = ' ' * 4 * (nivel + 1)
+        
+        for archivo in archivos:
+            print(f"{sub_indentacion}📄 {archivo}")
+            archivos_totales += 1
+            para_revision.append(archivo)
+            
+    print("\n=====================================================")
+    print(f"Total de archivos encontrados: {archivos_totales}")
+    print("=====================================================")
+    
+else:
+    print("❌ ERROR: La ruta especificada no existe.")
+    print("Por favor, verifique que la carpeta 'Vichy2026-LaSalle' esté exactamente en el escritorio del usuario 'ALIANZA FRANCESA'.")
