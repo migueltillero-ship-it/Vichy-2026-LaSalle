@@ -3,30 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Vichy 2026 · Un Voyage d'Exception | La Salle & AFSC</title>
+    <title>Vichy 2026 · Un Voyage d'Exception | Alliance Française & La Salle</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --gold:#C9A84C; --ink:#07070A; --blue:#002395; }
-        *, *::before, *::after { cursor: none; box-sizing: border-box; }
+        :root { --gold:#C9A84C; --ink:#07070A; }
+        *, *::before, *::after { box-sizing: border-box; cursor: none; }
         @media (max-width: 1024px) { *, *::before, *::after { cursor: auto; } }
-        body { background: var(--ink); color: #fff; overflow-x: hidden; font-family: 'Outfit', sans-serif; -webkit-font-smoothing: antialiased; }
-        #webgl-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.7; mix-blend-mode: screen; }
-        #custom-cursor { position: fixed; top: 0; left: 0; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 99999; mix-blend-mode: difference; box-shadow: 0 0 15px var(--gold); display:none; }
+        body { font-family: 'Outfit', sans-serif; background: var(--ink); color: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        #webgl-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.6; mix-blend-mode: screen; }
+        #custom-cursor { position: fixed; top: 0; left: 0; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 99999; mix-blend-mode: difference; display: none; box-shadow: 0 0 15px var(--gold); }
         @media (min-width: 1025px) { #custom-cursor { display: block; } }
-        .cursor-hover { width: 50px !important; height: 50px !important; background: rgba(201,168,76,0.2) !important; border: 1px solid var(--gold); backdrop-filter: blur(4px); }
-        .lux { font-family: 'Cormorant Garamond', serif; }
+        .cursor-hover { width: 50px !important; height: 50px !important; background: rgba(201,168,76,0.2) !important; border: 1px solid var(--gold); backdrop-filter: blur(4px); mix-blend-mode: normal !important; }
+        #intro { position: fixed; inset: 0; background: var(--ink); z-index: 9999; display: flex; align-items: center; justify-content: center; text-align: center; }
         .sp { padding: 10rem 0; }
-        .img-premium { border-radius: 32px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.1); }
-        #intro { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .logo-reveal { opacity: 0; transform: translateY(30px); }
-        .disney-gradient { background: radial-gradient(circle at center, #1a1a4a 0%, #07070a 100%); position: relative; overflow: hidden; }
+        .img-premium { border-radius: 24px; box-shadow: 0 40px 80px rgba(0,0,0,0.8); border: 1px solid rgba(201,168,76,0.2); }
         .iframe-container { position: relative; width: 100%; padding-top: 56.25%; border-radius: 24px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.1); }
         .iframe-container iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
-        .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.08); border-radius: 40px; }
         .audio-btn { position: fixed; bottom: 30px; left: 30px; z-index: 100; background: rgba(7,7,10,0.8); border: 1px solid var(--gold); color: var(--gold); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); opacity: 0; pointer-events: none; transition: all 0.4s ease; }
         .audio-btn.visible { opacity: 1; pointer-events: auto; }
     </style>
@@ -34,114 +30,107 @@
 <body>
     <canvas id="webgl-canvas"></canvas>
     <div id="custom-cursor"></div>
-    <audio id="bg-music" src="Arrival_at_the_Terminal%20(1).mp3" loop preload="auto"></audio>
+    <audio id="bg-music" src="Arrival_at_the_Terminal%20%281%29.mp3" loop preload="auto"></audio>
+    
     <button id="audio-control" class="audio-btn"><svg id="ico-play" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/></svg><svg id="ico-pause" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"/></svg></button>
 
     <div id="intro">
-        <div class="flex flex-col items-center max-w-4xl px-6">
-            <div class="flex items-center justify-center gap-12 mb-16">
-                <img src="logo_af_sc.jpg" class="logo-reveal w-24 h-24 rounded-full border-2 border-gold shadow-2xl">
-                <div class="logo-reveal w-px h-20 bg-white/20"></div>
-                <div class="logo-reveal w-24 h-24 bg-white rounded-full flex items-center justify-center border-4 border-[#002395] text-[#002395] font-bold text-xl">LS</div>
-                <div class="logo-reveal w-px h-20 bg-white/20"></div>
-                <div class="logo-reveal w-24 h-24 bg-white rounded-full flex items-center justify-center border-2 border-gold p-2"><span class="text-[8px] font-bold text-black text-center uppercase">CAVILAM<br>VICHY</span></div>
-            </div>
-            <h1 class="logo-reveal lux text-white text-5xl md:text-8xl font-bold uppercase mb-12">Un Voyage <em class="text-gold">d'Exception</em></h1>
-            <button id="start-btn" class="logo-reveal px-20 py-6 border-2 border-gold text-gold rounded-full text-2xl font-bold hover:bg-gold hover:text-ink transition-all">Iniciar Experiencia</button>
+        <div id="intro-inner">
+            <img src="logos_banner.png" class="max-w-lg w-full mb-12 drop-shadow-2xl">
+            <h1 class="font-title text-8xl md:text-[10rem] text-white">Vichy <em>2026</em></h1>
+            <p class="lux text-gold text-3xl mt-6 italic tracking-widest">Un Voyage d'Exception</p>
+            <button id="start-btn" class="mt-16 px-24 py-8 border-2 border-gold text-gold rounded-full text-2xl font-bold uppercase shadow-gold-glow hover:bg-gold hover:text-ink transition-all">Iniciar Misión</button>
         </div>
     </div>
 
     <main id="main" class="opacity-0">
         <section class="h-screen relative flex items-center justify-center overflow-hidden">
             <video id="hero-vid" class="absolute inset-0 w-full h-full object-cover opacity-50" playsinline muted loop poster="logos_banner.png"><source src="Vichy_2026_La_Salle.mp4" type="video/mp4"></video>
-            <div class="absolute inset-0 bg-gradient-to-b from-ink via-transparent to-ink"></div>
-            <h2 class="lux text-7xl md:text-[11rem] leading-none text-center drop-shadow-2xl">Vichy <em class="text-gold italic">2026</em></h2>
+            <div class="absolute inset-0 bg-gradient-to-b from-ink/90 via-transparent to-ink"></div>
+            <h2 class="font-title text-7xl md:text-[11rem] text-center drop-shadow-2xl">Habla francés.<br><em class="text-gold italic">Conquista el mundo.</em></h2>
         </section>
 
         <section class="sp bg-ink-mid">
-            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
-                <div class="sr">
-                    <p class="text-gold uppercase tracking-[.6em] font-bold mb-8">Nuestra Institución</p>
-                    <h3 class="lux text-6xl text-white mb-10">El Prestigio de la <em class="text-gold">Sede</em></h3>
-                    <p class="text-white/60 text-xl leading-relaxed mb-8">Ubicados en Av. La Almolonga 80. Somos el único centro oficial DELF/DALF en Chiapas, garantizando la excelencia académica.</p>
+            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-32 items-center">
+                <img src="fachada_alianza.jpg" class="img-premium" onerror="this.src='https://placehold.co/800x600/12121A/C9A84C?text=Alliance+Française+SCSC'">
+                <div>
+                    <p class="text-gold uppercase tracking-[.4em] font-bold mb-6">La Institución</p>
+                    <h3 class="font-title text-6xl text-white mb-8">El Prestigio de nuestra <em class="text-gold">Sede</em></h3>
+                    <p class="text-white/60 text-xl leading-relaxed">Único centro oficial DELF/DALF en Chiapas. Av. La Almolonga 80.</p>
                 </div>
-                <div class="sr"><img src="fachada_alianza.jpg" class="img-premium" onerror="this.style.display='none'"></div>
             </div>
         </section>
 
         <section class="sp bg-ink">
-            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-16 items-center">
-                <div class="lg:col-span-5 sr">
-                    <h3 class="lux text-6xl text-white mb-8">Alianza <em class="text-gold">Estratégica</em></h3>
-                    <p class="text-white/70 text-xl leading-relaxed">Acuerdo firmado entre la Alliance Française y el Colegio La Salle para garantizar seguridad y calidad académica.</p>
-                </div>
-                <div class="lg:col-span-7 sr"><img src="IMG-20260224-WA0062.jpg" class="img-premium w-full"></div>
+            <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-20 items-center">
+                <div class="lg:col-span-5"><h3 class="font-title text-7xl text-white mb-10">Acuerdo <em class="text-gold">Oficial</em></h3><p class="text-white/70 text-2xl font-light">Compromiso firmado para garantizar excelencia a los alumnos de La Salle.</p></div>
+                <div class="lg:col-span-7"><img src="IMG-20260224-WA0062.jpg" class="img-premium w-full shadow-gold-glow"></div>
             </div>
         </section>
 
-        <section class="sp bg-ink-mid"><div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="lux text-6xl text-white mb-10">Dossier <em class="text-gold">CAVILAM</em></h2>
-            <div class="iframe-container sr"><iframe src="https://www.canva.com/design/DAHEyON056E/GTq8vUu6uawdUGYpq-ck7A/view?embed" allowfullscreen></iframe></div>
-        </div></section>
-
-        <section class="sp disney-gradient"><div class="max-w-5xl mx-auto px-6 text-center sr">
-            <h3 class="lux text-8xl text-white mb-8">Disneyland <em class="text-gold">Paris</em></h3>
-            <p class="text-white/60 text-2xl font-light italic">"La magia del cierre monumental en el corazón de Europa."</p>
-        </div></section>
-
-        <section class="sp bg-ink"><div class="max-w-7xl mx-auto px-6">
-            <h3 class="lux text-5xl text-center mb-20">Voz de la <em class="text-gold">Experiencia</em></h3>
-            <div class="grid md:grid-cols-2 gap-16 items-center mb-32 sr"><video controls class="img-premium aspect-video w-full" src="video_regina.mp4"></video><p class="text-3xl font-light italic text-white/80 leading-snug">"Regina nos cuenta cómo esta inmersión transformó su vida."</p></div>
-            <div class="grid lg:grid-cols-3 gap-10 sr">
-                <video controls class="img-premium" src="video_famille_1.mp4"></video>
-                <video controls class="img-premium" src="video_famille_2.mp4"></video>
-                <video controls class="img-premium" src="video_famille_3.mp4"></video>
+        <section id="dossier" class="sp bg-ink-mid">
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <h2 class="font-title text-7xl text-white mb-16">Dossier <em class="text-gold">CAVILAM</em></h2>
+                <div class="iframe-container"><iframe src="https://www.canva.com/design/DAHEyON056E/GTq8vUu6uawdUGYpq-ck7A/view?embed" allowfullscreen></iframe></div>
             </div>
-        </div></section>
+        </section>
 
-        <section class="sp bg-ink-mid"><div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
-            <div class="glass p-12 sr"><h4 class="lux text-4xl text-gold mb-6">Inversión</h4><p class="text-6xl font-bold">~€3,500</p><p class="text-white/40 text-xs uppercase tracking-widest mt-6">Sujeto a confirmación final.</p></div>
-            <div class="glass p-12 sr"><h4 class="lux text-4xl text-red-500 mb-6">Cupos</h4><p class="text-6xl font-bold">15 Plazas</p><p class="text-red-500/60 text-xs uppercase tracking-widest mt-6 font-bold">Asignación por registro.</p></div>
-        </div></section>
-
-        <footer class="py-32 text-center border-t border-white/5">
-            <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-20">
-                <div class="sr"><img src="imagen.png" class="w-48 h-48 mx-auto bg-white p-4 rounded-3xl mb-8 shadow-2xl"><h4 class="lux text-3xl">Miguel Tillero</h4><p class="text-gold uppercase text-xs tracking-widest mt-2">Director General AFSC</p></div>
-                <div class="sr"><img src="qr_roman.png" class="w-48 h-48 mx-auto bg-white p-4 rounded-3xl mb-8 shadow-2xl"><h4 class="lux text-3xl">Román Fuentes</h4><p class="text-gold uppercase text-xs tracking-widest mt-2">Responsable La Salle</p></div>
+        <section class="py-40 bg-ink">
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-24 text-center">
+                <div><div class="stat-n text-gold text-9xl font-bold" data-target="18">0</div><p class="uppercase text-white/40 tracking-[.6em] text-xs font-bold">Días</p></div>
+                <div><div class="stat-n text-gold text-9xl font-bold" data-target="60">0</div><p class="uppercase text-white/40 tracking-[.7em] text-xs font-bold">Horas</p></div>
+                <div><div class="stat-n text-gold text-9xl font-bold" data-target="5">0</div><p class="uppercase text-white/40 tracking-[.7em] text-xs font-bold">Ciudades</p></div>
+                <div><div class="stat-n text-gold text-9xl font-bold">100%</div><p class="uppercase text-white/40 tracking-[.7em] text-xs font-bold">Inmersión</p></div>
+            </div>
+        </section>
+        
+        <footer class="sp bg-ink border-t border-white/5 text-center">
+            <div class="grid md:grid-cols-2 gap-24 max-w-5xl mx-auto px-6">
+                <div class="bg-white/5 p-16 rounded-[60px] border border-white/10"><img src="imagen.png" class="w-40 h-40 mx-auto bg-white p-2 rounded-2xl mb-8"><h4 class="lux text-4xl">Director General</h4></div>
+                <div class="bg-white/5 p-16 rounded-[60px] border border-white/10"><img src="qr_roman.png" class="w-40 h-40 mx-auto bg-white p-2 rounded-2xl mb-8"><h4 class="lux text-4xl">Responsable La Salle</h4></div>
             </div>
         </footer>
     </main>
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const scene = new THREE.Scene(); const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('webgl-canvas'), alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        const geo = new THREE.BufferGeometry(); const v = []; for(let i=0; i<3000; i++) v.push(THREE.MathUtils.randFloatSpread(25), THREE.MathUtils.randFloatSpread(25), THREE.MathUtils.randFloatSpread(25));
+        const geo = new THREE.BufferGeometry(); const v = [];
+        for (let i = 0; i < 5000; i++) v.push(THREE.MathUtils.randFloatSpread(25), THREE.MathUtils.randFloatSpread(25), THREE.MathUtils.randFloatSpread(25));
         geo.setAttribute('position', new THREE.Float32BufferAttribute(v, 3));
-        const pts = new THREE.Points(geo, new THREE.PointsMaterial({ color: 0xC9A84C, size: 0.03 }));
+        const pts = new THREE.Points(geo, new THREE.PointsMaterial({ color: 0xC9A84C, size: 0.04 }));
         scene.add(pts); camera.position.z = 5;
-        const anim = () => { requestAnimationFrame(anim); pts.rotation.y += 0.0005; renderer.render(scene, camera); }; anim();
+        const animate = () => { requestAnimationFrame(animate); pts.rotation.y += 0.001; renderer.render(scene, camera); }; loop();
 
-        gsap.to(".logo-reveal", { opacity: 1, y: 0, stagger: 0.3, duration: 1.5, ease: "power4.out" });
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const playChime = (f = 880) => { if (audioCtx.state === 'suspended') audioCtx.resume(); const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); osc.type = 'sine'; osc.frequency.setValueAtTime(f, audioCtx.currentTime); gain.gain.setValueAtTime(0.015, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.2); osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + 0.2); };
 
         const music = document.getElementById('bg-music');
+        const audioBtn = document.getElementById('audio-control');
+
         document.getElementById('start-btn').addEventListener('click', () => {
-            music.play();
+            playChime(440); music.volume = 0.3; music.play();
             gsap.to("#intro", { opacity: 0, duration: 1.5, onComplete: () => {
                 document.getElementById('intro').style.display = 'none';
                 document.getElementById('main').classList.add('visible');
                 gsap.to("#main", { opacity: 1, duration: 2 });
                 document.getElementById('hero-vid').play();
-                document.getElementById('audio-control').classList.add('visible');
+                audioBtn.classList.add('visible');
                 gsap.registerPlugin(ScrollTrigger);
-                gsap.utils.toArray('.sr').forEach(el => {
-                    gsap.to(el, { opacity: 1, y: 0, duration: 1.5, scrollTrigger: { trigger: el, start: "top 85%" }});
+                document.querySelectorAll('.stat-n').forEach(el => {
+                    const target = parseInt(el.dataset.target);
+                    if(target) gsap.to({val:0}, { val: target, duration: 4, ease: "power3.inOut", scrollTrigger: el, onUpdate: function() { el.textContent = Math.round(this.targets()[0].val); }});
                 });
             }});
         });
+
         const cursor = document.getElementById('custom-cursor');
         document.addEventListener('mousemove', e => { gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 }); });
+        document.querySelectorAll('button, a').forEach(el => el.addEventListener('mouseenter', () => { cursor.classList.add('cursor-hover'); playChime(1100); }));
+        document.querySelectorAll('button, a').forEach(el => el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover')));
     });
     </script>
 </body>
