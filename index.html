@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="theme-color" content="#07070A">
-    <meta name="author" content="Miguel David Tillero Álvarez - Alliance Française de San Cristóbal">
+    <meta name="author" content="Miguel David Tillero Álvarez - Alliance Française">
 
     <title>Vichy 2026 · Un Voyage d'Exception | Portal de Excelencia La Salle & AFSC</title>
     
@@ -13,7 +12,7 @@
     {
       "@context": "https://schema.org",
       "@type": "EducationEvent",
-      "name": "Misión Lingüística Vichy 2026: La Salle & Alliance Française",
+      "name": "Misión Lingüística Vichy 2026: La Salle & AFSC",
       "startDate": "2026-07-01",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": { "@type": "Place", "name": "CAVILAM - Alliance Française", "address": { "@type": "PostalAddress", "addressLocality": "Vichy", "addressCountry": "FR" } },
@@ -33,7 +32,7 @@
             theme: {
                 extend: {
                     colors: {
-                        'gold': '#C9A84C', 'gold-lt': '#E8C96A', 'blue': '#002395', 'navy': '#002395',
+                        'gold': '#C9A84C', 'gold-lt': '#E8C96A', 'blue': '#002395',
                         'ink': '#07070A', 'ink-mid': '#0F0F14', 'cream': '#FAF8F3'
                     },
                     fontFamily: {
@@ -48,7 +47,7 @@
 
     <style>
         /* === NÚCLEO SOBERANO (NITIDEZ GPU) === */
-        :root { --gold:#C9A84C; --ink:#07070A; --blue:#002395; }
+        :root { --gold:#C9A84C; --ink:#07070A; }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         
         @media (pointer: fine) { 
@@ -60,30 +59,25 @@
         body { background: var(--ink); color: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
         #webgl-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.8; mix-blend-mode: screen; transform: translateZ(0); will-change: transform; }
 
+        /* Intro Monumental - FALLBACK DE SEGURIDAD */
         #intro { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
-        .logo-reveal { opacity: 0; transform: translateY(40px) scale(0.95); }
+        #intro-inner { opacity: 0; transform: translateY(20px); transition: opacity 2s; }
         
         .lux { font-family: 'Cormorant Garamond', serif; }
         .txt-monumental { font-family: 'Playfair Display', serif; font-weight: 900; letter-spacing: -0.05em; }
         .sp { padding: 15rem 0; }
 
         .img-premium { border-radius: 50px; box-shadow: 0 60px 120px rgba(0,0,0,1); background: #000; overflow: hidden; position: relative; transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); transform: translateZ(0); border: 1px solid rgba(255,255,255,0.05); }
-        .img-premium:hover { border-color: var(--gold); transform: scale(1.02) rotateY(2deg); }
         .img-premium img { width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity 1s; }
 
-        .journey-step { position: relative; padding-left: 5rem; border-left: 2px solid rgba(201,168,76,0.2); margin-bottom: 8rem; transition: all 0.5s; opacity: 1 !important; }
+        .journey-step { position: relative; padding-left: 5rem; border-left: 2px solid rgba(201,168,76,0.2); margin-bottom: 8rem; opacity: 1 !important; }
         .journey-step::before { content: ''; position: absolute; left: -11px; top: 0; width: 20px; height: 20px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 30px var(--gold); }
         
         .iframe-container { position: relative; width: 100%; padding-top: 56.25%; border-radius: 40px; overflow: hidden; box-shadow: 0 100px 200px rgba(0,0,0,1); border: 1px solid rgba(201,168,76,0.2); }
-        .french-tag { display: block; font-family: 'Cormorant Garamond', serif; font-style: italic; color: #94A3B8; font-size: 1.3rem; margin-top: 15px; border-left: 3px solid var(--gold); padding-left: 1.5rem; line-height: 1.5; margin-bottom: 3rem; }
-
         .lang-btn { position: fixed; top: 40px; right: 40px; z-index: 100; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); padding: 0.8rem 1.8rem; border-radius: 40px; display: flex; gap: 1.5rem; font-weight: 800; font-size: 1.1rem; }
         .lang-active { color: var(--gold); text-shadow: 0 0 10px var(--gold); }
         
         .ff-input { width: 100%; background: #fff !important; color: #1a1a1a !important; border-radius: 25px; padding: 1.8rem; border: 2px solid #e2e8f0; font-family: 'Outfit', sans-serif; font-size: 1.2rem; }
-        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.05); padding: 2rem 0; cursor: pointer; }
-        .faq-answer { height: 0; overflow: hidden; transition: all 0.5s; opacity: 0; color: rgba(255,255,255,0.5); }
-        .faq-item.active .faq-answer { height: auto; opacity: 1; padding-top: 2rem; }
     </style>
 </head>
 <body>
@@ -104,29 +98,27 @@
 </div>
 
 <div id="intro">
-    <div class="flex flex-col items-center max-w-7xl px-12 text-center">
-        <div class="flex items-center justify-center gap-12 md:gap-32 mb-20 logo-reveal">
+    <div id="intro-inner" class="flex flex-col items-center max-w-7xl px-12 text-center">
+        <div class="flex items-center justify-center gap-12 md:gap-32 mb-20">
             <div class="relative group">
-                <img src="logo.png" class="w-32 h-32 md:w-64 md:h-64 object-contain shadow-2xl transition-transform duration-1000 group-hover:scale-105" alt="Alliance Française">
-                <p class="mt-6 lux text-gold text-sm tracking-[0.5em] uppercase font-bold opacity-40">SCSC · MÉXICO</p>
+                <img src="logo.png" class="w-32 h-32 md:w-64 md:h-64 object-contain shadow-2xl" alt="Alliance Française" onerror="this.src='logos_banner.png'">
             </div>
             <div class="w-px h-56 bg-gradient-to-b from-transparent via-white/30 to-transparent"></div>
             <div class="group relative">
-                <div class="w-44 h-44 md:w-80 md:h-80 bg-white rounded-full flex items-center justify-center p-14 shadow-2xl transition-transform duration-1000 group-hover:scale-105">
+                <div class="w-44 h-44 md:w-80 md:h-80 bg-white rounded-full flex items-center justify-center p-14 shadow-2xl">
                     <span class="text-[#002395] font-monumental text-4xl md:text-8xl leading-tight uppercase font-black tracking-tighter">La Salle</span>
                 </div>
-                <p class="mt-6 lux text-blue text-sm tracking-[0.5em] uppercase font-bold opacity-40">Partenaire Officiel</p>
             </div>
         </div>
-        <h1 class="logo-reveal txt-monumental text-white text-8xl md:text-[20rem] mb-12 uppercase leading-none" id="t1">Vichy <em class="text-gold italic font-normal">2026</em></h1>
-        <p class="logo-reveal lux text-white/50 text-2xl md:text-6xl italic tracking-[0.8em] mb-20 uppercase" data-es="L'Odyssée de l'Excellence" data-fr="L'Odyssée de l'Excellence">L'Odyssée de l'Excellence</p>
-        <button id="start-btn" class="logo-reveal px-32 py-14 border-4 border-gold text-gold rounded-full text-4xl font-black hover:bg-gold hover:text-ink transition-all uppercase tracking-[0.4em]">Inaugurer</button>
+        <h1 class="txt-monumental text-white text-8xl md:text-[20rem] mb-12 uppercase leading-none drop-shadow-[0_40px_100px_rgba(0,0,0,1)]">Vichy <em class="text-gold italic font-normal">2026</em></h1>
+        <p class="lux text-white/50 text-2xl md:text-6xl italic tracking-[0.8em] mb-20 uppercase" data-es="L'Odyssée de l'Excellence" data-fr="L'Odyssée de l'Excellence">L'Odyssée de l'Excellence</p>
+        <button id="start-btn" class="px-32 py-14 border-4 border-gold text-gold rounded-full text-4xl font-black hover:bg-gold hover:text-ink transition-all uppercase tracking-[0.4em] shadow-gold-glow">Inaugurer</button>
     </div>
 </div>
 
 <main id="main" class="opacity-0">
     <section class="h-screen relative flex items-center justify-center overflow-hidden">
-        <video id="hero-vid" class="absolute inset-0 w-full h-full object-cover opacity-60" playsinline muted loop poster="banner_logos.jpg"><source src="Vichy_2026_La_Salle.mp4" type="video/mp4"></video>
+        <video id="hero-vid" class="absolute inset-0 w-full h-full object-cover opacity-60" playsinline muted loop poster="logos_banner.png"><source src="Vichy_2026_La_Salle.mp4" type="video/mp4"></video>
         <div class="absolute inset-0 bg-gradient-to-b from-ink via-transparent to-ink"></div>
         <div class="relative z-10 text-center px-12 sr">
             <h2 class="txt-monumental text-white text-9xl md:text-[22rem] leading-none uppercase" data-es="Habla francés. Conquista el mundo." data-fr="Parlez français. Conquérez le monde.">Habla francés.<br><em class="text-gold italic font-normal">Conquista el mundo.</em></h2>
@@ -137,16 +129,16 @@
         <div class="max-w-7xl mx-auto px-12 grid lg:grid-cols-2 gap-48 items-center">
             <div class="sr-l">
                 <div class="img-premium">
-                    <img src="IMG-20260224-WA0062.jpg" alt="Firma" onload="this.style.opacity=1" onerror="this.src='fachada_alianza.jpg'">
+                    <img src="IMG-20260224-WA0062.jpg" alt="Firma Convenio" id="img-firma" onload="this.style.opacity=1" onerror="this.src='logos_banner.png'">
                 </div>
             </div>
             <div class="sr-r">
                 <p class="text-gold uppercase tracking-[1em] font-bold mb-10 text-sm">Alliance Stratégique</p>
-                <h3 class="txt-monumental text-8xl text-white mb-12 leading-tight" data-es="Acuerdo de Excelencia" data-fr="Accord d'Excellence">Acuerdo de <em class="text-gold">Excelencia</em></h3>
+                <h3 class="txt-monumental text-8xl text-white mb-12 leading-tight" data-es="Convenio de Excelencia" data-fr="Accord d'Excellence">Convenio de <em class="text-gold">Excelencia</em></h3>
                 <p class="text-white/60 text-4xl leading-relaxed font-light italic mb-10" data-es="Este programa cuenta con el respaldo formal de la Dirección General de ambas instituciones." data-fr="Ce programme bénéficie du soutien formel de la Direction des deux institutions.">"Este programa cuenta con el respaldo formal de la Dirección General de ambas instituciones."</p>
                 <div class="flex gap-24">
                     <div><span class="lux text-9xl text-gold">2026</span><p class="text-[14px] uppercase text-white/30 font-black mt-6 tracking-widest">Bicentenario</p></div>
-                    <div><span class="lux text-9xl text-gold">#1</span><p class="text-[14px] uppercase text-white/30 font-black mt-6 tracking-widest">Alianza Chiapas</p></div>
+                    <div><span class="lux text-9xl text-gold">#1</span><p class="text-[14px] uppercase text-white/30 font-black mt-6 tracking-widest">DELF Chiapas</p></div>
                 </div>
             </div>
         </div>
@@ -156,17 +148,17 @@
         <div class="max-w-7xl mx-auto px-12">
             <div class="text-center mb-64 sr">
                 <p class="text-gold uppercase tracking-[1.5em] font-bold mb-12 text-sm">Le Parcours de la Réussite</p>
-                <h3 class="txt-monumental text-8xl md:text-[16rem] text-white leading-none uppercase tracking-tighter" data-es="EL PROGRAMA" data-fr="LE PROGRAMME">EL <em class="text-gold">PROGRAMA</em></h3>
+                <h3 class="txt-monumental text-8xl md:text-[14rem] text-white leading-none uppercase tracking-tighter" data-es="EL PROGRAMA" data-fr="LE PROGRAMME">EL <em class="text-gold">PROGRAMA</em></h3>
                 <div class="gold-line"></div>
-                <p class="text-white/30 text-5xl font-light italic mt-20 max-w-6xl mx-auto border-y border-white/10 py-16 leading-relaxed" data-es="Una arquitectura pedagógica de 18 días diseñada para forjar los líderes globales de mañana." data-fr="Une architecture pédagogique de 18 jours conçue pour forger les leaders mondiaux de demain.">"Una arquitectura pedagógica diseñada para forjar los líderes globales de mañana."</p>
+                <p class="text-white/30 text-5xl font-light italic mt-20 max-w-6xl mx-auto border-y border-white/10 py-16" data-es="Una arquitectura pedagógica de 18 días." data-fr="Une architecture pédagogique de 18 jours.">"Una arquitectura pedagógica diseñada para forjar los líderes globales de mañana."</p>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-48 items-start mb-64">
+            <div class="grid lg:grid-cols-2 gap-48 mb-64">
                 <div class="space-y-48 sr-l">
                     <div class="journey-step">
                         <h4 class="lux text-gold text-8xl mb-10 italic leading-none">01. Vichy</h4>
-                        <span class="french-tag">"Le foyer mondial de l'enseignement du français."</span>
-                        <p class="text-white/70 text-4xl font-light leading-relaxed mb-12" data-es="15 días de inmersión total en CAVILAM. Academia intensiva y vida auténtica en familias francesas certificadas." data-fr="15 jours d'immersion totale au CAVILAM. Rigueur académique et vie en familles françaises certifiées.">15 días de inmersión total en <strong>CAVILAM</strong>. Mañanas de rigor académico y tardes de inmersión cultural profunda.</p>
+                        <span class="french-tag">"L'immersion totale au CAVILAM."</span>
+                        <p class="text-white/70 text-4xl font-light leading-relaxed mb-12" data-es="15 días de academia intensiva y vida auténtica en familias francesas certificadas." data-fr="15 jours d'académie intensive et de vie en familles françaises certifiées.">15 días de inmersión total en <strong>CAVILAM</strong>. Mañanas de rigor académico y tardes de inmersión cultural profunda.</p>
                     </div>
                     <div class="journey-step">
                         <h4 class="lux text-gold text-8xl mb-10 italic leading-none">02. Paris</h4>
@@ -176,51 +168,29 @@
                 </div>
                 <div class="sr-r">
                     <div class="iframe-container shadow-gold-glow">
-                        <iframe loading="lazy" src="https://www.canva.com/design/DAHEyON056E/GTq8vUu6uawdUGYpq-ck7A/view?embed" allowfullscreen title="Dossier Vichy 2026"></iframe>
-                    </div>
-                    <div class="mt-24 text-center">
-                        <a href="Vichy_2026_La_Salle.pptx" download class="sensory-trigger px-28 py-12 border-4 border-gold text-gold rounded-full font-black text-3xl uppercase tracking-widest hover:bg-gold hover:text-ink transition-all shadow-gold-glow" data-es="Descargar Dossier" data-fr="Télécharger Dossier">Descargar Dossier (PPTX)</a>
+                        <iframe loading="lazy" src="https://www.canva.com/design/DAHEyON056E/GTq8vUu6uawdUGYpq-ck7A/view?embed" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="bienestar" class="sp bg-ink-mid">
-        <div class="max-w-7xl mx-auto px-12">
-            <h3 class="txt-monumental text-8xl text-center text-white mb-64" data-es="Hogar y Testimonios" data-fr="Foyer et Témoignages">Hogar y <em class="text-gold">Testimonios</em></h3>
-            <div class="grid md:grid-cols-3 gap-24 mb-32 sr">
-                <div class="img-premium"><video controls playsinline class="w-full h-full object-cover"><source src="video_famille_1.mp4"></video><div class="p-5 text-center bg-black/50"><p class="text-gold font-bold">Famille Bertrand</p></div></div>
-                <div class="img-premium"><video controls playsinline class="w-full h-full object-cover"><source src="video_famille_2.mp4"></video><div class="p-5 text-center bg-black/50"><p class="text-gold font-bold">Nadine et Philippe</p></div></div>
-                <div class="img-premium featured border-2 border-gold"><video controls playsinline class="w-full h-full object-cover"><source src="video_regina.mp4"></video><div class="p-5 text-center bg-black/50"><p class="text-gold font-bold uppercase tracking-widest">Témoignage Regina</p></div></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="faq" class="sp bg-ink">
-        <div class="max-w-4xl mx-auto px-12 sr">
-            <h3 class="txt-monumental text-7xl text-white mb-20 uppercase tracking-widest">FAQ</h3>
-            <div class="faq-item" onclick="this.classList.toggle('active')"><h4 class="lux text-4xl text-white">¿Es necesario hablar francés?</h4><div class="faq-answer">No. Todos los niveles son bienvenidos y evaluados individualmente.</div></div>
-            <div class="faq-item" onclick="this.classList.toggle('active')"><h4 class="lux text-4xl text-white">¿Qué incluye el costo?</h4><div class="faq-answer">Academia, alojamiento, pensión completa, TGV, Disney y seguro médico. (Excluye vuelo MEX-FRA).</div></div>
-        </div>
-    </section>
-
     <footer class="sp bg-ink text-center border-t border-white/5">
         <div class="grid md:grid-cols-2 gap-48 max-w-7xl mx-auto px-12 mb-64">
-            <div class="bg-white/5 p-20 rounded-[80px] border border-white/10">
-                <img src="imagen.png" class="w-64 h-64 mx-auto mb-10 shadow-2xl">
-                <h4 class="lux text-6xl text-white mb-5">Miguel David Tillero A.</h4>
+            <div class="bg-white/5 p-32 rounded-[100px] border border-white/10">
+                <img src="imagen.png" class="w-80 h-80 mx-auto mb-16 shadow-2xl" onerror="this.src='logos_banner.png'">
+                <h4 class="lux text-8xl text-white mb-8 font-bold">Miguel David Tillero A.</h4>
                 <p class="text-gold text-2xl uppercase tracking-widest font-black">Directeur Général AFSC</p>
-                <p class="text-4xl font-mono mt-10 text-white/40">+52 1 967 172 1870</p>
+                <a href="tel:+529671721870" class="block mt-16 text-white/30 hover:text-gold font-mono font-bold text-5xl transition-colors">+52 1 967 172 1870</a>
             </div>
-            <div class="bg-white/5 p-20 rounded-[80px] border border-white/10">
-                <img src="qr_roman.png" class="w-64 h-64 mx-auto mb-10 shadow-2xl">
-                <h4 class="lux text-6xl text-white mb-5">Román Fuentes</h4>
-                <p class="text-gold text-2xl uppercase tracking-widest font-black">Responsable La Salle</p>
-                <p class="text-4xl font-mono mt-10 text-white/40">+52 1 473 121 9337</p>
+            <div class="bg-white/5 p-32 rounded-[100px] border border-white/10">
+                <img src="qr_roman.png" class="w-80 h-80 mx-auto mb-16 shadow-2xl" onerror="this.src='logos_banner.png'">
+                <h4 class="lux text-8xl text-white mb-8 font-bold">Román Fuentes</h4>
+                <p class="text-gold text-2xl uppercase tracking-widest font-black">Responsable Colegio La Salle</p>
+                <a href="tel:+5214731219337" class="block mt-16 text-white/30 hover:text-gold font-mono font-bold text-5xl transition-colors">+52 1 473 121 9337</a>
             </div>
         </div>
-        <p class="text-white/10 text-xl uppercase mt-72">Alliance Française de San Cristóbal de Las Casas © 2026<br>RFC: AFM110210ER4 | Av. La Almolonga 80.</p>
+        <p class="text-white/10 text-[20px] uppercase tracking-[2em] mt-72 font-black leading-relaxed">Alliance Française de San Cristóbal de Las Casas © 2026<br>RFC: AFM110210ER4 | Av. La Almolonga 80, Chiapas, Mexique.</p>
     </footer>
 </main>
 
@@ -232,20 +202,23 @@ function switchLang(lang) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. FORZAR VISIBILIDAD DE INTRO SI GSAP FALLA
+    setTimeout(() => { document.getElementById('intro-inner').style.opacity = '1'; }, 100);
+
     const scene = new THREE.Scene(); const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('webgl-canvas'), alpha: true, antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight); renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    const geo = new THREE.BufferGeometry(); const pos = new Float32Array(15000 * 3);
-    for(let i=0; i<45000; i++) pos[i] = (Math.random() - 0.5) * 60;
+    const geo = new THREE.BufferGeometry(); const particlesCount = 15000; const pos = new Float32Array(particlesCount * 3);
+    for(let i=0; i<particlesCount*3; i++) { pos[i] = (Math.random() - 0.5) * 60; }
     geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
     const mat = new THREE.PointsMaterial({ color: 0xC9A84C, size: 0.05, transparent: true, opacity: 0.9 });
-    const points = new THREE.Points(geo, mat); scene.add(points); camera.position.z = 15;
+    const points = new THREE.Points(geo, mat); scene.add(points); camera.position.z = 12;
     const animate = () => { requestAnimationFrame(animate); points.rotation.y += 0.0006; renderer.render(scene, camera); }; animate();
 
     const music = document.getElementById('bg-music'); const audioBtn = document.getElementById('audio-btn');
     document.getElementById('start-btn').addEventListener('click', () => {
-        music.play().catch(()=>{}); 
-        gsap.to("#intro", { opacity: 0, duration: 2, ease: "power4.inOut", onComplete: () => {
+        music.play().catch(()=>{}); audioBtn.classList.add('show');
+        gsap.to("#intro", { opacity: 0, scale: 1.1, duration: 2, ease: "power4.inOut", onComplete: () => {
             document.getElementById('intro').style.display = 'none'; gsap.to("#main", { opacity: 1, duration: 2 });
             document.getElementById('hero-vid').play().catch(()=>{});
             gsap.registerPlugin(ScrollTrigger);
@@ -253,8 +226,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }});
     });
 
-    const cursor = document.getElementById('cursor-dot'); const follower = document.getElementById('cursor-ring');
-    document.addEventListener('mousemove', e => { gsap.to(cursor, { left: e.clientX, top: e.clientY, duration: 0.05 }); gsap.to(follower, { left: e.clientX, top: e.clientY, duration: 0.15 }); });
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (!isTouch) {
+        document.addEventListener('mousemove', e => { 
+            gsap.to('#cursor-dot', { left: e.clientX, top: e.clientY, duration: 0.05 });
+            gsap.to('#cursor-ring', { left: e.clientX, top: e.clientY, duration: 0.15 });
+        });
+    } else { 
+        document.getElementById('cursor-dot').style.display = 'none'; 
+        document.getElementById('cursor-ring').style.display = 'none'; 
+    }
 });
 </script>
 </body>
